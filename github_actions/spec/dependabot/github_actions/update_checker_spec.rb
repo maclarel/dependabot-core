@@ -284,6 +284,15 @@ RSpec.describe Dependabot::GithubActions::UpdateChecker do
       end
     end
 
+    context "given a dependency that uses branches to track major releases" do
+      let(:upload_pack_fixture) { "run-vcpkg" }
+
+      context "using the major version" do
+        let(:reference) { "v7" }
+        it { is_expected.to eq(Dependabot::GithubActions::Version.new("10")) }
+      end
+    end
+
     context "given a dependency with a tag reference when an update with the same precision is not available" do
       let(:latest_versions) { [] }
 
@@ -296,7 +305,7 @@ RSpec.describe Dependabot::GithubActions::UpdateChecker do
         end
 
         checker.instance_variable_set(:@git_commit_checker, git_commit_checker)
-        allow(git_commit_checker).to receive(:local_tags_for_latest_version_commit_sha).and_return(version_tags)
+        allow(git_commit_checker).to receive(:local_refs_for_latest_version_commit_sha).and_return(version_tags)
       end
 
       context "using the major version" do

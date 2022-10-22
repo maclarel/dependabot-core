@@ -95,7 +95,7 @@ module Dependabot
         @latest_version_tag ||= begin
           return git_commit_checker.local_tag_for_latest_version if dependency.version.nil?
 
-          latest_tags = git_commit_checker.local_tags_for_latest_version_commit_sha
+          latest_tags = git_commit_checker.local_refs_for_latest_version_commit_sha
 
           # Find the latest version with the same precision as the pinned version.
           current_precision = precision(dependency.version)
