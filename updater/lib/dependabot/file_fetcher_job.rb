@@ -30,6 +30,7 @@ module Dependabot
         return
       end
 
+      File.mkdir_p(File.dirname(Environment.output_path))
       File.write(Environment.output_path, JSON.dump(
                                             base64_dependency_files: base64_dependency_files.map(&:to_h),
                                             base_commit_sha: @base_commit_sha
