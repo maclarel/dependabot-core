@@ -289,7 +289,7 @@ RUN bash /opt/go_modules/helpers/build
 COPY --chown=dependabot:dependabot hex/helpers /opt/hex/helpers
 ENV MIX_HOME="/opt/hex/mix"
 # https://github.com/hexpm/hex/releases
-ENV HEX_VERSION="1.0.1"
+ENV HEX_VERSION="2.0.0"
 RUN bash /opt/hex/helpers/build
 
 COPY --chown=dependabot:dependabot pub/helpers /opt/pub/helpers
